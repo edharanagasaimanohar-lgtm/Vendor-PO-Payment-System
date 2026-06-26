@@ -1,0 +1,139 @@
+{
+  "info": {
+    "name": "Purchase Order - Payment Management",
+    "description": "Postman Collection for DAY 12 - PAYMENT RECORDING & BALANCE DUE ENGINE",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Record Payment (PO ₹5000, Pay ₹2000)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"payment_type\": \"Partial\",\n  \"amount\": 2000,\n  \"payment_date\": \"2026-06-15\",\n  \"reference_no\": \"REF1\",\n  \"notes\": \"Test 1\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/purchase-orders/1/payment",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "purchase-orders",
+            "1",
+            "payment"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Pay Remaining (PO ₹5000, Pay ₹3000)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"payment_type\": \"Final\",\n  \"amount\": 3000,\n  \"payment_date\": \"2026-06-16\",\n  \"reference_no\": \"REF2\",\n  \"notes\": \"Test 2\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/purchase-orders/1/payment",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "purchase-orders",
+            "1",
+            "payment"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Overpayment Test (PO ₹5000, Pay ₹6000)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"payment_type\": \"Advance\",\n  \"amount\": 6000,\n  \"payment_date\": \"2026-06-17\",\n  \"reference_no\": \"REF3\",\n  \"notes\": \"Test 3\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/purchase-orders/1/payment",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "purchase-orders",
+            "1",
+            "payment"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Zero Payment Test",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"payment_type\": \"Partial\",\n  \"amount\": 0,\n  \"payment_date\": \"2026-06-18\",\n  \"reference_no\": \"REF4\",\n  \"notes\": \"Test 6\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/purchase-orders/1/payment",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "purchase-orders",
+            "1",
+            "payment"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Purchase Order Details",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/purchase-orders/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "purchase-orders",
+            "1"
+          ]
+        }
+      }
+    }
+  ]
+}

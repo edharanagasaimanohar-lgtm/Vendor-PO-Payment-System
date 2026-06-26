@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Custom design token extensions for specific shades used in the visual application */
+  --color-gray-955: #111622;
+  --color-gray-905: #0f172a;
+  --color-gray-855: #1e293b;
+  --color-gray-850: #202b3c;
+  --color-gray-808: #1e293b;
+  --color-gray-805: #111827;
+  --color-gray-755: #334155;
+  --color-gray-505: #64748b;
+  --color-gray-455: #94a3b8;
+  --color-gray-450: #94a3bb;
+  --color-gray-405: #cbd5e1;
+  --color-gray-205: #e2e8f0;
+  --color-gray-155: #f1f5f9;
+  --color-gray-150: #f1f5f9;
+  --color-gray-105: #f8fafc;
+
+  --color-emerald-150: #a7f3d0;
+  --color-emerald-450: #34d399;
+  --color-rose-455: #f87171;
+  --color-blue-750: #1d4ed8;
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+  /* Hide standard numeric entry sliders */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+/* Printing overlays for purchase order invoice and statement vouchers */
+@media print {
+  /* Reset background and text colors */
+  body, html {
+    background: #fff !important;
+    background-color: #fff !important;
+    color: #000 !important;
+    font-size: 11pt !important;
+  }
+  
+  /* Reset layout constraints and offsets like sidebar padding */
+  .lg\:pl-64, [class*="lg:pl-"] {
+    padding-left: 0 !important;
+  }
+  
+  /* Hide all interactive shell layers, sidebars, headers, panels, modals backdrop, and actions */
+  aside, nav, header, footer, button, select, input, .print\:hidden, .no-print, .toast-container {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+  
+  /* Reset margins for printing area */
+  main, .max-w-7xl, .space-y-6, .max-w-2xl {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Make sure modal container itself doesn't hide contents */
+  .fixed, .backdrop-blur-xs, [class*="backdrop-blur"] {
+    position: static !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: auto !important;
+  }
+
+  /* Expand modal height scroll box properties on print */
+  .h-\[85vh\], .overflow-y-auto {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Target printed layout container */
+  #printed-invoice, #printed-statement, .print\:p-0 {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 10mm !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
